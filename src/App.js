@@ -1,23 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import Form from './components/Form/Form';
+import React, { useState } from 'react';
+import Entry from './components/Entries/Entry'
+
 
 function App() {
+
+  const [value, setValue] = useState([])
+
+  let entries = (newValue) => {
+    setValue((prev) => ({
+      ...prev,
+      value: newValue
+    }));
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="main_container">
+      <Form onPassed={entries} />
+      <Entry data={value} />
     </div>
   );
 }
